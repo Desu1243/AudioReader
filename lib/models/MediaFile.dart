@@ -1,0 +1,27 @@
+class MediaFile{
+  String name;
+  String visibleName = "";
+  String filePath;
+  String coverImage;
+
+
+  MediaFile({
+    required this.name,
+    required this.visibleName,
+    required this.filePath,
+    required this.coverImage
+  });
+
+  Map<String, dynamic> toJson() => {
+    'name': name,
+    'visibleName': visibleName,
+    'filePath': filePath,
+    'coverImage': coverImage,
+  };
+
+  MediaFile.fromJson(Map<String, dynamic> json):
+      name = json['name'],
+      visibleName = json['visibleName'],
+      filePath = json['filePath'],
+      coverImage = json['coverImage'];
+}
