@@ -1,10 +1,10 @@
+import 'package:audioreader/pages/LoadingPage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MaterialApp(
-    theme: ThemeData.light(),
-    home: const Scaffold(
-      body: Text("Nothing"),
-    ),
-  ));
+  runApp(
+    const MaterialApp(
+      home: LoadingPage()
+    )
+  );
 }

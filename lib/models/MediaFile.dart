@@ -3,13 +3,14 @@ class MediaFile{
   String visibleName = "";
   String filePath;
   String coverImage;
-
+  bool played = false;
 
   MediaFile({
     required this.name,
     required this.visibleName,
     required this.filePath,
-    required this.coverImage
+    required this.coverImage,
+    required this.played
   });
 
   Map<String, dynamic> toJson() => {
@@ -17,11 +18,13 @@ class MediaFile{
     'visibleName': visibleName,
     'filePath': filePath,
     'coverImage': coverImage,
+    'played': played
   };
 
   MediaFile.fromJson(Map<String, dynamic> json):
       name = json['name'],
       visibleName = json['visibleName'],
       filePath = json['filePath'],
-      coverImage = json['coverImage'];
+      coverImage = json['coverImage'],
+      played = json['played'];
 }
