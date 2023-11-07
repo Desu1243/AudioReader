@@ -1,4 +1,5 @@
 import 'package:audioreader/pages/MainPage.dart';
+import 'package:audioreader/services/SettingsService.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../services/ThemeService.dart';
@@ -13,7 +14,8 @@ class LoadingPage extends StatefulWidget {
 class _LoadingPageState extends State<LoadingPage> {
 
   Future<void> getData() async {
-    await Future.delayed(const Duration(milliseconds: 700));
+    SettingsService settingsService = SettingsService();
+    await settingsService.getSettings();
     if(context.mounted){
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const MainPage()));
     }

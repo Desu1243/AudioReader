@@ -1,5 +1,7 @@
 import 'package:audioreader/pages/CreatePage.dart';
+import 'package:audioreader/services/SettingsService.dart';
 import 'package:audioreader/services/ThemeService.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 class CreateOptionMenu extends StatelessWidget {
@@ -48,8 +50,18 @@ class CreateOptionMenu extends StatelessWidget {
                     ),
                   )),
               TextButton(
-                  onPressed: () {
+                  onPressed: () async {
                     /// open select directory menu and if selected something add it to source
+                    String? selectedDirectory = await FilePicker.platform.getDirectoryPath();
+
+                    if (selectedDirectory != null) {
+                      SettingsService.settings.sources.add(selectedDirectory);
+                      SettingsService settingsService = SettingsService();
+                      await settingsService.updateSource();
+                    }
+                    if(context.mounted){
+                      Navigator.of(context).pop();
+                    }
                   },
                   child: SizedBox(
                     width: double.infinity,
@@ -60,9 +72,7 @@ class CreateOptionMenu extends StatelessWidget {
                   )),
               TextButton(
                   onPressed: () {
-                    if(context.mounted){
                       Navigator.of(context).pop();
-                    }
                   },
                   child: SizedBox(
                     width: double.infinity,
