@@ -38,7 +38,7 @@ class CreateOptionMenu extends StatelessWidget {
                   ),
                 ),
               ),
-              TextButton(
+              TextButton( /// create playlist button
                   onPressed: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => const CreatePage()));
                   },
@@ -49,7 +49,7 @@ class CreateOptionMenu extends StatelessWidget {
                       style: TextStyle(fontSize: 16, color: ThemeService.text),
                     ),
                   )),
-              TextButton(
+              TextButton( /// add files source button
                   onPressed: () async {
                     /// open select directory menu and if selected something add it to source
                     String? selectedDirectory = await FilePicker.platform.getDirectoryPath();
@@ -70,7 +70,7 @@ class CreateOptionMenu extends StatelessWidget {
                       style: TextStyle(fontSize: 16, color: ThemeService.text),
                     ),
                   )),
-              TextButton(
+              TextButton( /// cancel button
                   onPressed: () {
                       Navigator.of(context).pop();
                   },

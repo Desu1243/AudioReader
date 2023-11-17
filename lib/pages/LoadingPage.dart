@@ -31,9 +31,9 @@ class _LoadingPageState extends State<LoadingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             gradient: LinearGradient(
-                colors: [ThemeService.white, ThemeService.lightGrey],
+                colors: [Color.fromRGBO(225, 225, 225, 1), Color.fromRGBO(160, 160, 160, 1)],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomLeft)),
         child: const Center(

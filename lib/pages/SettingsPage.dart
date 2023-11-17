@@ -15,6 +15,9 @@ class _SettingsPageState extends State<SettingsPage> {
   List<Extension> settingsSupportedExtensions = [
     ...SettingsService.settings.supportedExtensions
   ];
+  List<String> addedSources = SettingsService.settings.sources;
+  double newMinAudioLength = SettingsService.settings.minAudioLength.toDouble();
+
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +39,43 @@ class _SettingsPageState extends State<SettingsPage> {
               title: const Text("Select extensions"),
               textColor: ThemeService.text,
               children: [
-                ...settingsSupportedExtensions
+                ...(settingsSupportedExtensions
                     .map((ex) => checkboxExtensionOption(ex))
-                    .toList(),
+                    .toList()),
               ],
+            ),
+            ExpansionTile(
+              title: const Text("Added sources"),
+              textColor: ThemeService.text,
+              children: [
+                if (SettingsService.settings.sources.isEmpty)
+                  const Padding(
+                      padding: EdgeInsets.all(20),
+                      child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text("No sources added", textAlign: TextAlign.left))),
+                ...(addedSources.map((src)=>sourceOption(src)).toList())
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Text("Minimum media file length: ${newMinAudioLength.toInt()} min"),
+            ),
+            Slider(
+              value: newMinAudioLength,
+              onChanged: (value){
+                setState(() {
+                  newMinAudioLength = value;
+                });
+              },
+              onChangeEnd: (value) async {
+                SettingsService settingsService = SettingsService();
+                SettingsService.settings.minAudioLength = newMinAudioLength.toInt();
+                settingsService.updateSettings();
+              },
+              min: 1,
+              max: 60,
+              divisions: 59,
             )
           ]),
         ));
@@ -51,10 +87,35 @@ class _SettingsPageState extends State<SettingsPage> {
       onChanged: (value) async {
         /// change settings after updating selected extensions
         SettingsService settingsService = SettingsService();
-        setState(() {
-          extension.isSelected = value!;
-        });
-        await settingsService.updateSettings();
+        if(context.mounted){
+          setState(() {
+            extension.isSelected = value!;
+          });
+          await settingsService.updateSettings();
+        }
       },
       title: Text(extension.extension));
+
+
+  Widget sourceOption(String src) => Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+    child: Row(
+      children: [
+        Expanded(child: Text((src.split('0/')).last)),
+        IconButton(
+            onPressed: () async {
+              /// delete from sources list and save settings
+              SettingsService settingsService = SettingsService();
+              if(context.mounted){
+                setState(() {
+                  var removed = addedSources.remove(src);
+                });
+                await settingsService.updateSettings();
+              }
+            },
+            icon: const Icon(Icons.delete), color: ThemeService.text)
+      ],
+    ),
+  );
+
 }

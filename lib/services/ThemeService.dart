@@ -2,7 +2,7 @@ import 'package:flutter/rendering.dart';
 
 class ThemeService{
   ThemeService();
-  static Color white = const Color.fromRGBO(225, 225, 225, 1);
+  static Color white = const Color.fromRGBO(242, 242, 242, 1);
   static Color lightGrey = const Color.fromRGBO(160, 160, 160, 1);
   static Color text = const Color.fromRGBO(0, 0, 0, 1);
   static Color background = const Color.fromRGBO(255, 255, 255, 1);
