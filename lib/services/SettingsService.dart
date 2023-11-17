@@ -28,13 +28,9 @@ class SettingsService {
 
       }else{
         /// declaration of default settings
-        var defaultSettings = Settings(
-            sources: List<String>.empty(growable: true),
-            minAudioLength: 5,
-            supportedExtensions: ['mp3', 'mp4'],
-            theme: 0
-        );
+        var defaultSettings = Settings.defaultSettings();
         await audioReaderSettingsFile.writeAsString(jsonEncode(defaultSettings.toMap()));
+        settings = defaultSettings;
       }
     }catch(e){
       print("save: ${e}");
@@ -42,7 +38,7 @@ class SettingsService {
     print(settings.toMap());
   }
 
-  Future<void> updateSource() async {
+  Future<void> updateSettings() async {
     /// change value of static settings variable and then call this function
     try{
       final audioReaderSettingsFile = await _settingsFile;
@@ -51,7 +47,6 @@ class SettingsService {
       settings.sources = settings.sources.toSet().toList();
 
       await audioReaderSettingsFile.writeAsString(jsonEncode(settings.toMap()));
-
     }catch(e){
       print(e);
     }

@@ -22,7 +22,7 @@ class _LibraryPageState extends State<LibraryPage> {
       ),
       body: Container(
         padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-        child: Center(child: Text("none")),
+        child: Center(child: Text("No playlists created")),
       ),
     );
   }

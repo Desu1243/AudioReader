@@ -1,6 +1,8 @@
+import 'package:audioreader/models/Extension.dart';
+
 class Settings{
   late List<String> sources; // list of directories added as a media file source
-  late List<String> supportedExtensions; // list of supported media file extensions eg.: 'mp3', 'mp4'
+  late List<Extension> supportedExtensions; // list of supported media file extensions eg.: 'mp3', 'mp4'
   late int minAudioLength; // ranges from 1 min to 60 min
   late int theme;
 
@@ -15,7 +17,9 @@ class Settings{
     return {
       'sources': sources,
       'minAudioLength': minAudioLength,
-      'supportedExtensions': supportedExtensions,
+      'supportedExtensions': supportedExtensions.map((ex){
+        return ex.toMap();
+      }).toList(),
       'theme': theme
     };
   }
@@ -23,8 +27,21 @@ class Settings{
   Settings.fromJson(Map<String, dynamic> json){
     sources = List<String>.from(json['sources']);
     minAudioLength = json['minAudioLength'];
-    supportedExtensions = List<String>.from(json['supportedExtensions']);
+    supportedExtensions = List<Extension>.from(json['supportedExtensions'].map((ex)=>Extension.fromJson(ex)));
     theme = json['theme'];
+  }
 
+  static Settings defaultSettings() {
+    return Settings(
+        sources: List<String>.empty(growable: true),
+        minAudioLength: 5,
+        supportedExtensions: [
+          Extension(extension: 'mp3', isSelected: true),
+          Extension(extension: 'mp4', isSelected: true),
+          Extension(extension: 'm4a', isSelected: true),
+          Extension(extension: 'wav', isSelected: true),
+        ],
+        theme: 0
+    );
   }
 }

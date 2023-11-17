@@ -15,9 +15,9 @@ dependencies:
   #loading page spinner
   flutter_spinkit: 5.2.0
   #saving settings
-  path_provider: 2.0.15
+  path_provider: ^2.1.1
   #permissions for using external files
-  permission_handler: ^10.2.0
+  permission_handler: ^11.0.1
   #selecting directories for media source
   file_picker: ^6.1.1
 

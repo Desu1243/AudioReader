@@ -57,7 +57,7 @@ class CreateOptionMenu extends StatelessWidget {
                     if (selectedDirectory != null) {
                       SettingsService.settings.sources.add(selectedDirectory);
                       SettingsService settingsService = SettingsService();
-                      await settingsService.updateSource();
+                      await settingsService.updateSettings();
                     }
                     if(context.mounted){
                       Navigator.of(context).pop();

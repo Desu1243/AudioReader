@@ -113,7 +113,7 @@ class _MainPageState extends State<MainPage> {
                           ? Icons.headphones_rounded
                           : Icons.headphones_outlined,
                       color: ThemeService.navBarIcon),
-                  Text("All Files",
+                  Text("All Media",
                       style: TextStyle(
                           color: ThemeService.navBarText, fontSize: 12))
                 ],
