@@ -37,7 +37,7 @@ class _SettingsPageState extends State<SettingsPage> {
           child: ListView(children: [
             ExpansionTile(
               title: const Text("Select extensions"),
-              textColor: ThemeService.text,
+              //textColor: ThemeService.text,
               children: [
                 ...(settingsSupportedExtensions
                     .map((ex) => checkboxExtensionOption(ex))
@@ -46,7 +46,7 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             ExpansionTile(
               title: const Text("Added sources"),
-              textColor: ThemeService.text,
+              //textColor: ThemeService.text,
               children: [
                 if (SettingsService.settings.sources.isEmpty)
                   const Padding(

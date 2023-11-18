@@ -2,14 +2,12 @@ class MediaFile{
   String name;
   String visibleName = "";
   String filePath;
-  String coverImage;
+  String coverImage = "";
   bool played = false;
 
   MediaFile({
     required this.name,
-    required this.visibleName,
     required this.filePath,
-    required this.coverImage,
     required this.played
   });
 

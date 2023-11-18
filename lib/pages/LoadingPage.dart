@@ -1,4 +1,5 @@
 import 'package:audioreader/pages/MainPage.dart';
+import 'package:audioreader/services/MediaService.dart';
 import 'package:audioreader/services/SettingsService.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -15,7 +16,10 @@ class _LoadingPageState extends State<LoadingPage> {
 
   Future<void> getData() async {
     SettingsService settingsService = SettingsService();
+    MediaService mediaService = MediaService();
     await settingsService.getSettings();
+    await mediaService.getMediaFiles();
+
     if(context.mounted){
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const MainPage()));
     }

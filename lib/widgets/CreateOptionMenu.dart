@@ -1,4 +1,5 @@
 import 'package:audioreader/pages/CreatePage.dart';
+import 'package:audioreader/pages/LoadingPage.dart';
 import 'package:audioreader/services/SettingsService.dart';
 import 'package:audioreader/services/ThemeService.dart';
 import 'package:file_picker/file_picker.dart';
@@ -40,6 +41,7 @@ class CreateOptionMenu extends StatelessWidget {
               ),
               TextButton( /// create playlist button
                   onPressed: () {
+                    Navigator.of(context).pop();
                     Navigator.push(context, MaterialPageRoute(builder: (context) => const CreatePage()));
                   },
                   child: SizedBox(
@@ -60,7 +62,9 @@ class CreateOptionMenu extends StatelessWidget {
                       await settingsService.updateSettings();
                     }
                     if(context.mounted){
+                      /// close alert, and then reload the app
                       Navigator.of(context).pop();
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoadingPage()));
                     }
                   },
                   child: SizedBox(

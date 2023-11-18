@@ -51,4 +51,12 @@ class SettingsService {
       print(e);
     }
   }
+
+  static List<String> allowedExtensions(){
+    List<String> allowedExtensions = List.empty(growable: true);
+    for(int i = 0; i < settings.supportedExtensions.length; i++){
+      allowedExtensions.add(settings.supportedExtensions[i].extension);
+    }
+    return allowedExtensions;
+  }
 }
