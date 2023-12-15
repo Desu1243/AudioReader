@@ -56,7 +56,7 @@ class MediaService {
                 var name =
                     "${splitPath[splitPath.length - 2]} ${splitPath.last}";
                 allMediaFiles.add(MediaFile(
-                    name: name, filePath: filesList[j].path, played: false));
+                    name: name, filePath: filesList[j].path, played: false, duration: duration));
               }
             }
           }

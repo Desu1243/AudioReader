@@ -1,3 +1,4 @@
+import 'package:audioreader/widgets/MediaWidget.dart';
 import 'package:flutter/material.dart';
 
 import '../services/MediaService.dart';
@@ -12,6 +13,8 @@ class AllAudioPage extends StatefulWidget {
 }
 
 class _AllAudioPageState extends State<AllAudioPage> {
+  final ScrollController scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,17 +38,22 @@ class _AllAudioPageState extends State<AllAudioPage> {
             setState(() {});
           }
         },
-        child: ListView(children: [
-          if(MediaService.allMediaFiles.isEmpty)
-            Container(
-              constraints: BoxConstraints(
-                  minHeight: MediaQuery.of(context).size.height - 56 - 60 - 24
-                  /// in order: - AppBar - BottomNavigationBar - text in the center
-              ),
-              child: const Center(child: Text("No media")),
-            ),
-        ]),
+        child: pageContent(),
       ),
     );
+  }
+
+  Widget pageContent(){
+    if(MediaService.allMediaFiles.isEmpty){
+      return const Center(child: Text("No media"));
+    }else{
+      return ListView.builder(
+        itemCount: MediaService.allMediaFiles.length,
+        controller: scrollController,
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
+        itemBuilder: (context, index) => MediaWidget(mediaFile: MediaService.allMediaFiles[index]),
+      );
+    }
   }
 }

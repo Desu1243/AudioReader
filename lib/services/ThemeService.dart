@@ -13,5 +13,6 @@ class ThemeService{
   static Color navBarText = const Color.fromRGBO(28, 28, 30, 1);
   static Color navBarBg = const Color.fromRGBO(214, 214, 214, 1);
 
+  static Color durationText = const Color.fromRGBO(60, 60, 60, 1);
 
 }
