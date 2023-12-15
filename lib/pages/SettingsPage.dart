@@ -36,7 +36,7 @@ class _SettingsPageState extends State<SettingsPage> {
           padding: const EdgeInsets.all(10),
           child: ListView(children: [
             ExpansionTile(
-              title: const Text("Select extensions"),
+              title: const Text("Allowed extensions"),
               //textColor: ThemeService.text,
               children: [
                 ...(settingsSupportedExtensions

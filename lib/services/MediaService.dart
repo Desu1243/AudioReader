@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:audioreader/models/Playlist.dart';
 import 'package:audioreader/services/SettingsService.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -29,26 +30,37 @@ class MediaService {
 
         if (await directory.exists()) {
           /// get list of files from directory
-          var filesList = directory.listSync(recursive: false, followLinks: false);
+          var filesList =
+              directory.listSync(recursive: false, followLinks: false);
           for (int j = 0; j < filesList.length; j++) {
-            /// check if media files have a correct extension
+            /// splitting path for easier use
             List<String> splitPath = filesList[j].path.split("/");
             String extension = (splitPath.last.split(".")).last;
-            List<String> allowedExtensions = SettingsService.allowedExtensions();
+            List<String> allowedExtensions =
+                SettingsService.allowedExtensions();
 
-            /// check if media files are correct length
+            /// check if media files are correct duration
+            AudioPlayer player = AudioPlayer();
+            await player.setSource(DeviceFileSource(filesList[j].path));
+            var duration = await player.getDuration();
+            await player.dispose();
 
+            if (duration != null) {
+              /// duration check
+              if (duration.inMinutes < SettingsService.settings.minAudioLength){
+                continue;
+              }
 
-            if(allowedExtensions.contains(extension)){
-              var name = "${splitPath[splitPath.length - 2]} ${splitPath.last}";
-              allMediaFiles.add(MediaFile(name: name, filePath: filesList[j].path, played: false));
+              /// check if media file have a correct extension
+              if (allowedExtensions.contains(extension)) {
+                var name =
+                    "${splitPath[splitPath.length - 2]} ${splitPath.last}";
+                allMediaFiles.add(MediaFile(
+                    name: name, filePath: filesList[j].path, played: false));
+              }
             }
-
           }
         }
-      }
-      for(int i = 0; i< allMediaFiles.length; i++){
-        print(allMediaFiles[i].name);
       }
     } catch (e) {
       print("get all Media files: $e");
@@ -71,9 +83,4 @@ class MediaService {
   Future<void> changePlaylistCover(String image, Playlist playlist) async {}
 
   Future<void> renamePlaylist(String newName, Playlist playlist) async {}
-
-  /// method: get all media files from added sources
-  /// method: get all created playlists
-
-  /// gets playlists files from sources
 }
