@@ -1,5 +1,6 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:audioreader/models/Audiobook.dart';
+import 'package:audioreader/models/AudiobookData.dart';
 import 'package:audioreader/services/SettingsService.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'dart:io';
@@ -9,13 +10,19 @@ import '../models/MediaFile.dart';
 class MediaService {
   MediaService();
 
-  static List<Audiobook> allAudiobooks = List.empty(growable: true);
-  //static List<MediaFile> allMediaFiles = List.empty(growable: true);
+  static List<AudiobookData> allAudiobooksData = List.empty(growable: true);
+  static List<Audiobook> audiobook = List.empty(growable: true);
 
-  Future<void> getAudiobooks() async {
+  Future<void> getAudiobook(String path) async {
     /// get all playlists from playlist save file
     /// set them as static variable
   }
+  Future<void> getAudiobooksData() async {
+    /// get all audiobooks from audiobook save file
+    /// set them as static variable
+
+  }
+
 
   Future<void> getMediaFiles(String folderPath) async {
 

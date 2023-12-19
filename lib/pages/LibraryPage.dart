@@ -50,19 +50,19 @@ class _LibraryPageState extends State<LibraryPage> {
             SettingsService settingsService = SettingsService();
 
             await settingsService.getSettings();
-            await mediaService.getAudiobooks();
+            await mediaService.getAudiobooksData();
           },
           child: pageContent()),
     );
   }
 
   Widget pageContent() {
-    if (MediaService.allAudiobooks.isEmpty) {
+    if (MediaService.allAudiobooksData.isEmpty) {
       return const Center(child: Text("No audiobooks"));
     }
 
     return ListView.builder(
         itemBuilder: (context, index) =>
-            AudiobookWidget(audiobook: MediaService.allAudiobooks[index]));
+            AudiobookWidget(audiobookData: MediaService.allAudiobooksData[index]));
   }
 }

@@ -2,11 +2,11 @@ import 'package:audioreader/services/ThemeService.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../models/Audiobook.dart';
+import '../models/AudiobookData.dart';
 
 class AudiobookWidget extends StatelessWidget {
-  final Audiobook audiobook;
-  const AudiobookWidget({super.key, required this.audiobook});
+  final AudiobookData audiobookData;
+  const AudiobookWidget({super.key, required this.audiobookData});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class AudiobookWidget extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(audiobook.name, style: const TextStyle(color: Colors.black)),
+                    Text(audiobookData.name, style: const TextStyle(color: Colors.black)),
                     Text(
                         "",
                         style: TextStyle(color: ThemeService.durationText)),

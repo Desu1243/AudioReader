@@ -18,7 +18,7 @@ class _LoadingPageState extends State<LoadingPage> {
     SettingsService settingsService = SettingsService();
     MediaService mediaService = MediaService();
     await settingsService.getSettings();
-    await mediaService.getAudiobooks();
+    await mediaService.getAudiobooksData();
 
     if(context.mounted){
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const MainPage()));
