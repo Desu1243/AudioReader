@@ -2,7 +2,6 @@ class MediaFile{
   String name;
   String visibleName = "";
   String filePath;
-  String coverImage = "";
   Duration duration = const Duration();
   bool played = false;
 
@@ -18,7 +17,6 @@ class MediaFile{
     'visibleName': visibleName,
     'filePath': filePath,
     'duration': duration,
-    'coverImage': coverImage,
     'played': played
   };
 
@@ -27,6 +25,5 @@ class MediaFile{
       visibleName = json['visibleName'],
       filePath = json['filePath'],
       duration = json['duration'],
-      coverImage = json['coverImage'],
       played = json['played'];
 }

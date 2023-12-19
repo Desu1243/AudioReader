@@ -16,7 +16,6 @@ class _SettingsPageState extends State<SettingsPage> {
     ...SettingsService.settings.supportedExtensions
   ];
   List<String> addedSources = SettingsService.settings.sources;
-  double newMinAudioLength = SettingsService.settings.minAudioLength.toDouble();
 
 
   @override
@@ -57,26 +56,6 @@ class _SettingsPageState extends State<SettingsPage> {
                 ...(addedSources.map((src)=>sourceOption(src)).toList())
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Text("Minimum media file length: ${newMinAudioLength.toInt()} min"),
-            ),
-            Slider(
-              value: newMinAudioLength,
-              onChanged: (value){
-                setState(() {
-                  newMinAudioLength = value;
-                });
-              },
-              onChangeEnd: (value) async {
-                SettingsService settingsService = SettingsService();
-                SettingsService.settings.minAudioLength = newMinAudioLength.toInt();
-                settingsService.updateSettings();
-              },
-              min: 1,
-              max: 60,
-              divisions: 59,
-            )
           ]),
         ));
   }
@@ -108,7 +87,7 @@ class _SettingsPageState extends State<SettingsPage> {
               SettingsService settingsService = SettingsService();
               if(context.mounted){
                 setState(() {
-                  var removed = addedSources.remove(src);
+                  addedSources.remove(src);
                 });
                 await settingsService.updateSettings();
               }

@@ -1,4 +1,3 @@
-import 'package:audioreader/pages/CreatePage.dart';
 import 'package:audioreader/pages/LoadingPage.dart';
 import 'package:audioreader/services/SettingsService.dart';
 import 'package:audioreader/services/ThemeService.dart';
@@ -19,7 +18,7 @@ class CreateOptionMenu extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       backgroundColor: ThemeService.white,
       child: SizedBox(
-        height: 250,
+        height: 220,
         width: double.infinity,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -30,7 +29,7 @@ class CreateOptionMenu extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: Text(
-                    "Create & Add Source",
+                    "Add Source",
                     style: TextStyle(
                       color: ThemeService.text,
                       fontSize: 24,
@@ -39,18 +38,6 @@ class CreateOptionMenu extends StatelessWidget {
                   ),
                 ),
               ),
-              TextButton( /// create playlist button
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const CreatePage()));
-                  },
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: Text(
-                      "Create playlist",
-                      style: TextStyle(fontSize: 16, color: ThemeService.text),
-                    ),
-                  )),
               TextButton( /// add files source button
                   onPressed: () async {
                     /// open select directory menu and if selected something add it to source
@@ -70,7 +57,7 @@ class CreateOptionMenu extends StatelessWidget {
                   child: SizedBox(
                     width: double.infinity,
                     child: Text(
-                      "Add files source",
+                      "Add audiobook source",
                       style: TextStyle(fontSize: 16, color: ThemeService.text),
                     ),
                   )),

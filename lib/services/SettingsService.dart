@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:file_picker/file_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import '../models/Settings.dart';
 
@@ -58,5 +59,15 @@ class SettingsService {
       allowedExtensions.add(settings.supportedExtensions[i].extension);
     }
     return allowedExtensions;
+  }
+
+  Future<void> addSource() async {
+    String? selectedDirectory = await FilePicker.platform.getDirectoryPath();
+
+    if (selectedDirectory != null) {
+      SettingsService.settings.sources.add(selectedDirectory);
+      SettingsService settingsService = SettingsService();
+      await settingsService.updateSettings();
+    }
   }
 }

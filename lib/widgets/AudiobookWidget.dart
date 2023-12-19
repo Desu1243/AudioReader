@@ -2,11 +2,11 @@ import 'package:audioreader/services/ThemeService.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../models/MediaFile.dart';
+import '../models/Audiobook.dart';
 
-class MediaWidget extends StatelessWidget {
-  final MediaFile mediaFile;
-  const MediaWidget({super.key, required this.mediaFile});
+class AudiobookWidget extends StatelessWidget {
+  final Audiobook audiobook;
+  const AudiobookWidget({super.key, required this.audiobook});
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +26,13 @@ class MediaWidget extends StatelessWidget {
 
               /// media file info
               Container(
-                margin: EdgeInsets.fromLTRB(7, 0, 0, 0),
+                margin: const EdgeInsets.fromLTRB(7, 0, 0, 0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(mediaFile.name, style: const TextStyle(color: Colors.black)),
+                    Text(audiobook.name, style: const TextStyle(color: Colors.black)),
                     Text(
-                        "${mediaFile.duration.inMinutes} min ${mediaFile.duration.inSeconds - mediaFile.duration.inMinutes * 60} s",
+                        "",
                         style: TextStyle(color: ThemeService.durationText)),
                   ],
                 ),

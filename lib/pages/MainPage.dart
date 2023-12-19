@@ -1,4 +1,3 @@
-import 'package:audioreader/pages/AllAudioPage.dart';
 import 'package:audioreader/pages/LibraryPage.dart';
 import 'package:audioreader/pages/SettingsPage.dart';
 import 'package:audioreader/services/ThemeService.dart';
@@ -28,7 +27,7 @@ class _MainPageState extends State<MainPage> {
             page = index;
           });
         },
-        children: const [LibraryPage(), AllAudioPage(), SettingsPage()],
+        children: const [LibraryPage(), SettingsPage()],
       ),
       bottomNavigationBar: Container(
         width: double.infinity,
@@ -87,14 +86,14 @@ class _MainPageState extends State<MainPage> {
                 children: [
                   Icon(Icons.add_circle_outline_outlined,
                       color: ThemeService.navBarIcon),
-                  Text("Create",
+                  Text("Add source",
                       style: TextStyle(
                           color: ThemeService.navBarText, fontSize: 12))
                 ],
               ),
             ),
 
-            /// All media button
+            /// Settings button
             ElevatedButton(
               onPressed: () {
                 pageController.animateToPage(1,
@@ -108,33 +107,7 @@ class _MainPageState extends State<MainPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
-                      page == 1
-                          ? Icons.headphones_rounded
-                          : Icons.headphones_outlined,
-                      color: ThemeService.navBarIcon),
-                  Text("All Media",
-                      style: TextStyle(
-                          color: ThemeService.navBarText, fontSize: 12))
-                ],
-              ),
-            ),
-
-            /// Settings button
-            ElevatedButton(
-              onPressed: () {
-                pageController.animateToPage(2,
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.ease);
-              },
-              style: ButtonStyle(
-                  elevation: const MaterialStatePropertyAll<double>(0),
-                  backgroundColor:
-                      MaterialStatePropertyAll<Color>(ThemeService.navBarBg)),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(page == 2 ? Icons.settings : Icons.settings_outlined,
+                  Icon(page == 1 ? Icons.settings : Icons.settings_outlined,
                       color: ThemeService.navBarIcon),
                   Text("Settings",
                       style: TextStyle(
