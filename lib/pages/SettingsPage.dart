@@ -21,15 +21,15 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: ThemeService.background,
+        backgroundColor: ThemeService.backgroundPrimary,
         appBar: AppBar(
           elevation: 0.0,
-          backgroundColor: ThemeService.appBarBg,
+          backgroundColor: ThemeService.backgroundPrimary,
           title: Text("Settings",
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 24,
-                  color: ThemeService.text)),
+                  color: ThemeService.primary)),
         ),
         body: Padding(
           padding: const EdgeInsets.all(10),
@@ -92,7 +92,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 await settingsService.updateSettings();
               }
             },
-            icon: const Icon(Icons.delete), color: ThemeService.text)
+            icon: const Icon(Icons.delete), color: ThemeService.secondary)
       ],
     ),
   );

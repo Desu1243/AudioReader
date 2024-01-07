@@ -33,15 +33,15 @@ class _LibraryPageState extends State<LibraryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ThemeService.background,
+      backgroundColor: ThemeService.backgroundPrimary,
       appBar: AppBar(
         elevation: 0.0,
-        backgroundColor: ThemeService.appBarBg,
+        backgroundColor: ThemeService.backgroundPrimary,
         title: Text("Library",
             style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 24,
-                color: ThemeService.text)),
+                color: ThemeService.primary)),
       ),
       body: RefreshIndicator(
           displacement: 10,

@@ -32,7 +32,7 @@ class _MainPageState extends State<MainPage> {
       bottomNavigationBar: Container(
         width: double.infinity,
         height: 60,
-        color: ThemeService.navBarBg,
+        color: ThemeService.backgroundSecondary,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -46,15 +46,15 @@ class _MainPageState extends State<MainPage> {
               style: ButtonStyle(
                   elevation: const MaterialStatePropertyAll<double>(0),
                   backgroundColor:
-                      MaterialStatePropertyAll<Color>(ThemeService.navBarBg)),
+                      MaterialStatePropertyAll<Color>(ThemeService.backgroundSecondary)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(page == 0 ? Icons.book_rounded : Icons.book_outlined,
-                      color: ThemeService.navBarIcon),
+                      color: ThemeService.secondary),
                   Text("Library",
                       style: TextStyle(
-                          color: ThemeService.navBarText, fontSize: 12))
+                          color: ThemeService.secondary, fontSize: 12))
                 ],
               ),
             ),
@@ -80,15 +80,15 @@ class _MainPageState extends State<MainPage> {
               style: ButtonStyle(
                   elevation: const MaterialStatePropertyAll<double>(0),
                   backgroundColor:
-                      MaterialStatePropertyAll<Color>(ThemeService.navBarBg)),
+                      MaterialStatePropertyAll<Color>(ThemeService.backgroundSecondary)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(Icons.add_circle_outline_outlined,
-                      color: ThemeService.navBarIcon),
+                      color: ThemeService.secondary),
                   Text("Add source",
                       style: TextStyle(
-                          color: ThemeService.navBarText, fontSize: 12))
+                          color: ThemeService.secondary, fontSize: 12))
                 ],
               ),
             ),
@@ -103,15 +103,15 @@ class _MainPageState extends State<MainPage> {
               style: ButtonStyle(
                   elevation: const MaterialStatePropertyAll<double>(0),
                   backgroundColor:
-                      MaterialStatePropertyAll<Color>(ThemeService.navBarBg)),
+                      MaterialStatePropertyAll<Color>(ThemeService.backgroundSecondary)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(page == 1 ? Icons.settings : Icons.settings_outlined,
-                      color: ThemeService.navBarIcon),
+                      color: ThemeService.secondary),
                   Text("Settings",
                       style: TextStyle(
-                          color: ThemeService.navBarText, fontSize: 12))
+                          color: ThemeService.secondary, fontSize: 12))
                 ],
               ),
             ),

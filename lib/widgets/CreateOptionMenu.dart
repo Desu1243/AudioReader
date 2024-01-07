@@ -16,7 +16,7 @@ class CreateOptionMenu extends StatelessWidget {
           borderRadius:
               BorderRadiusDirectional.vertical(top: Radius.circular(30))),
       alignment: Alignment.bottomCenter,
-      backgroundColor: ThemeService.white,
+      backgroundColor: ThemeService.backgroundSecondary,
       child: SizedBox(
         height: 220,
         width: double.infinity,
@@ -31,7 +31,7 @@ class CreateOptionMenu extends StatelessWidget {
                   child: Text(
                     "Add Source",
                     style: TextStyle(
-                      color: ThemeService.text,
+                      color: ThemeService.primary,
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                     ),
@@ -58,7 +58,7 @@ class CreateOptionMenu extends StatelessWidget {
                     width: double.infinity,
                     child: Text(
                       "Add audiobook source",
-                      style: TextStyle(fontSize: 16, color: ThemeService.text),
+                      style: TextStyle(fontSize: 16, color: ThemeService.secondary),
                     ),
                   )),
               TextButton( /// cancel button
@@ -69,7 +69,7 @@ class CreateOptionMenu extends StatelessWidget {
                     width: double.infinity,
                     child: Text(
                       "Cancel",
-                      style: TextStyle(fontSize: 16, color: ThemeService.text),
+                      style: TextStyle(fontSize: 16, color: ThemeService.secondary),
                     ),
                   ))
             ],
