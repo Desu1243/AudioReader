@@ -1,5 +1,5 @@
 // page that appears on the first launch of the app
-// asks user for the main audiobook folder, and permissions of any are necessary
+// asks user for the main audiobook folder, and permissions
 
 import 'package:audioreader/services/settings.dart';
 import 'package:file_picker/file_picker.dart';
@@ -31,9 +31,14 @@ class _StartPageState extends State<StartPage> {
     // get audiobooks from folder
     // save audiobooks data to file
     // push to loading page
-
     settingsService.saveSettings();
 
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    settingsService.getPermissions();
   }
 
   @override

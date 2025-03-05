@@ -2,8 +2,6 @@
 
 import 'package:audioreader/pages/start_page.dart';
 import 'package:flutter/material.dart';
-import 'package:permission_handler/permission_handler.dart';
-
 import '../services/settings.dart';
 
 class LoadingPage extends StatefulWidget {
@@ -21,9 +19,11 @@ class _LoadingPageState extends State<LoadingPage> {
     firstOpen = await settings.isItFirstOpen();
 
     if(firstOpen){
-      // get permissions to open folders
-      // get main audiobooks folder
-      await settings.getPermissions();
+      /*
+      if(context.mounted){
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const StartPage()));
+      }
+      */
 
     }else{
       // open save file

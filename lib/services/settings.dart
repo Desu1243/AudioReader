@@ -1,14 +1,13 @@
+import 'dart:convert';
 import 'dart:io';
-import 'package:audioreader/main.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-class Settings{
+class Settings {
   String mainFolderPath = "/storage/emulated/0/Audiobooks";
-  List<Permission> permissions = [
-    Permission.audio,
-    Permission.notification
-  ];
+  List<Permission> permissions = [Permission.audio, Permission.notification];
+
+  Settings();
 
   Future<bool> getPermissions() async {
     Map<Permission, PermissionStatus> statuses = await permissions.request();
@@ -25,41 +24,48 @@ class Settings{
     return File('$path/settings.txt');
   }
 
-  Future<bool> saveSettings() async {
-    final file = await _settingsFile;
-
-    return true;
+  Future<void> saveSettings() async {
+    try {
+      final file = await _settingsFile;
+      Map<String, dynamic> mapSettings = {"mainFolderPath": mainFolderPath};
+      String jsonSettings = jsonEncode(mapSettings);
+      await file.writeAsString(jsonSettings);
+    } catch (e) {
+      print("Save settings $e");
+    }
   }
 
-  void changeAudiobooksFolder(String newFolderPath){
+  /// imports settings data from json formatted string
+  Future<void> readSettingsFromFile() async {
+    try {
+      final file = await _settingsFile;
+      String jsonSettings = await file.readAsString();
+      Map<String, dynamic> mapSettings = jsonDecode(jsonSettings);
+
+      mainFolderPath = mapSettings['mainFolderPath'];
+    } catch (e) {
+      print("Settings read from file: $e");
+    }
+  }
+
+  void changeAudiobooksFolder(String newFolderPath) {
     mainFolderPath = newFolderPath;
   }
 
   Future<bool> isItFirstOpen() async {
     try {
       final file = await _settingsFile;
+      if (!(await file.exists())) {
+        return true;
+      }
 
-      // Read the file
       final contents = await file.readAsString();
-
-      if(contents.isNotEmpty){
+      if (contents.isNotEmpty) {
         return false;
       }
-      return true;
     } catch (e) {
-      print(e);
+      print("Is it first open: $e");
     }
-    return false;
-  }
-
-  /// Returns settings in JSON format as a string
-  String toJson(){
-
-    return "";
-  }
-
-  /// imports settings data from json formatted string
-  void fromJson(){
-
+    return true;
   }
 }
