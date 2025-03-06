@@ -4,7 +4,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class Settings {
-  String mainFolderPath = "/storage/emulated/0/Audiobooks";
+  static String mainFolderPath = "/storage/emulated/0/Audiobooks";
   List<Permission> permissions = [Permission.audio, Permission.notification];
 
   Settings();

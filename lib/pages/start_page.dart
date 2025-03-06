@@ -1,6 +1,7 @@
 // page that appears on the first launch of the app
 // asks user for the main audiobook folder, and permissions
 
+import 'package:audioreader/services/audiobooks.dart';
 import 'package:audioreader/services/settings.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,8 @@ class StartPage extends StatefulWidget {
 
 class _StartPageState extends State<StartPage> {
   Settings settingsService = Settings();
+  Audiobooks audiobooksService = Audiobooks();
+  bool buttonEnabled = true;
 
   void onPressedChangeFolder() async {
     String? selectedDirectory = await FilePicker.platform.getDirectoryPath();
@@ -26,12 +29,13 @@ class _StartPageState extends State<StartPage> {
     }
   }
 
-  void onPressedConfirm(){
+  void onPressedConfirm() async {
     // save settings
     // get audiobooks from folder
     // save audiobooks data to file
     // push to loading page
     settingsService.saveSettings();
+    await audiobooksService.fetchAudiobooks(Settings.mainFolderPath);
 
   }
 
@@ -72,7 +76,7 @@ class _StartPageState extends State<StartPage> {
                       const Text("AudioReader automatically selects a folder where you store all your audiobooks."),
                       const SizedBox(height: 10),
                       const Text("Selected folder:"),
-                      Text(settingsService.mainFolderPath),
+                      Text(Settings.mainFolderPath),
                       const SizedBox(height: 10),
                       const Text("Do you want to change it?"),
                       const SizedBox(height: 10),

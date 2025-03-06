@@ -1,14 +1,14 @@
 class AudioPart {
-  String audioFilePath;
-  Duration duration;
-  Duration progress;
-  bool isComplete;
+  late String audioFilePath;
+  late Duration duration;
+  Duration progress = Duration.zero;
+  bool isComplete = false;
 
-  AudioPart(
-      {required this.audioFilePath,
-      required this.duration,
-      required this.progress,
-      required this.isComplete});
+  AudioPart();
+
+  String getTitle(){
+    return audioFilePath.split("/").last.split(".").first;
+  }
 
   void calculateDuration(){
     

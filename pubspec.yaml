@@ -17,6 +17,9 @@ dependencies:
   # Playing audio files
   audioplayers: ^6.1.0
 
+  # Getting duration of audio files
+  just_audio: ^0.9.46
+
   # Getting permissions for using files
   permission_handler: ^11.3.1
 
