@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:audioreader/models/audio_part.dart';
 import 'package:audioreader/models/audiobook.dart';
 import 'package:just_audio/just_audio.dart' as just_audio;
+import 'package:media_info/media_info.dart';
 import 'package:path_provider/path_provider.dart';
 
 class Audiobooks{
@@ -30,6 +31,7 @@ class Audiobooks{
     List<Audiobook> newAudiobooks = List.empty(growable: true);
 
     var mainFolder = Directory(mainFolderPath);
+    /// TODO: if that folder does not exist, then create it and end function with empty list
     List audiobookPaths = mainFolder.listSync();
 
     /// get data from each audiobook
@@ -46,7 +48,7 @@ class Audiobooks{
 
         /// skip not audio files
         if(extension != "mp3" && extension != "mp4"){
-          print("Wrong extension! $extension");
+          // print("Wrong extension! $extension");
           continue;
         }
 
@@ -59,6 +61,8 @@ class Audiobooks{
         }else{
           throw("Audiobooks: error reading audio file duration");
         }
+
+
         /// add part of the audiobook to that audiobook's list of parts
         newAudiobookParts.add(newAudiobookPart);
       }
@@ -80,6 +84,10 @@ class Audiobooks{
     }
 
     audiobooksData = [...newAudiobooks];
+    print(newAudiobooks);
+    for(var a in newAudiobooks){
+      print(a.fullDuration);
+    }
 
     player.dispose();
   }
